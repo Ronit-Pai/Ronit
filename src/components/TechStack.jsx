@@ -1,28 +1,27 @@
 import React from "react";
 import { THEME } from "../constants/theme";
 import { GlassCard } from "./GlassCard";
-
-import ReactIcon from "../assets/icons/react.svg?react";
-import NextIcon from "../assets/icons/nextjs.svg?react";
-import TypeScriptIcon from "../assets/icons/typescript.svg?react";
-import PythonIcon from "../assets/icons/python.svg?react";
-import TailwindIcon from "../assets/icons/tailwind.svg?react";
-import Html5Icon from "../assets/icons/html5.svg?react";
-import Css3Icon from "../assets/icons/css3.svg?react";
-import JavaScriptIcon from "../assets/icons/javascript.svg?react";
-import GitIcon from "../assets/icons/git.svg?react";
+import ReactIcon from "../assets/icons/react.svg";
+import NextIcon from "../assets/icons/nextjs.svg";
+import TypeScriptIcon from "../assets/icons/typescript.svg";
+import PythonIcon from "../assets/icons/python.svg";
+import TailwindIcon from "../assets/icons/tailwind.svg";
+import Html5Icon from "../assets/icons/html5.svg";
+import Css3Icon from "../assets/icons/css3.svg";
+import JavaScriptIcon from "../assets/icons/javascript.svg";
+import GitIcon from "../assets/icons/git.svg";
 
 export function TechStack() {
   const technologies = [
-    { name: "React", icon: <ReactIcon /> },
-    { name: "Next.js", icon: <NextIcon /> },
-    { name: "TypeScript", icon: <TypeScriptIcon /> },
-    { name: "Python", icon: <PythonIcon /> },
-    { name: "Tailwind CSS", icon: <TailwindIcon /> },
-    { name: "HTML5", icon: <Html5Icon /> },
-    { name: "CSS3", icon: <Css3Icon /> },
-    { name: "JavaScript", icon: <JavaScriptIcon /> },
-    { name: "Git", icon: <GitIcon /> },
+    { name: "React", icon: ReactIcon },
+    { name: "Next.js", icon: NextIcon },
+    { name: "TypeScript", icon: TypeScriptIcon },
+    { name: "Python", icon: PythonIcon },
+    { name: "Tailwind CSS", icon: TailwindIcon },
+    { name: "HTML5", icon: Html5Icon },
+    { name: "CSS3", icon: Css3Icon },
+    { name: "JavaScript", icon: JavaScriptIcon },
+    { name: "Git", icon: GitIcon },
   ];
 
   return (
@@ -89,9 +88,15 @@ export function TechStack() {
                   e.currentTarget.style.background = "transparent";
                 }}
               >
-                <div style={{ width: "40px", height: "40px", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                  {tech.icon}
-                </div>
+                <img
+                  src={tech.icon}
+                  alt={tech.name}
+                  style={{
+                    width: "40px",
+                    height: "40px",
+                    objectFit: "contain",
+                  }}
+                />
               </div>
 
               <p

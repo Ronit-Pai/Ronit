@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 import { Projects } from './components/Projects';
@@ -10,6 +10,11 @@ import { THEME } from './constants/theme';
 
 export default function Portfolio() {
   const [currentPage, setCurrentPage] = useState('home');
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    console.log('Current page:', currentPage);
+  }, [currentPage]);
 
   return (
     <div
@@ -38,6 +43,18 @@ export default function Portfolio() {
       )}
       
       {currentPage === 'about' && <About />}
+      
+      {currentPage === 'work' && (
+        <div style={{ padding: '4rem 1.5rem', textAlign: 'center' }}>
+          <h1>Work Coming Soon</h1>
+        </div>
+      )}
+      
+      {currentPage === 'resume' && (
+        <div style={{ padding: '4rem 1.5rem', textAlign: 'center' }}>
+          <h1>Resume Coming Soon</h1>
+        </div>
+      )}
       
       <Footer />
     </div>
