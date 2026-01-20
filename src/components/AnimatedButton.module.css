@@ -1,0 +1,61 @@
+/* reset */
+.button {
+  background: transparent;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+}
+
+/* button styling */
+.button {
+  --border-right: 6px;
+  --text-stroke-color: rgba(255, 255, 255, 0.6);
+  --animation-color: #37ff8b;
+  --fs-size: 2em;
+
+  letter-spacing: 3px;
+  font-size: var(--fs-size);
+  font-family: Arial, sans-serif;
+  text-transform: uppercase;
+
+  color: transparent;
+  -webkit-text-stroke: 1px var(--text-stroke-color);
+}
+
+/* actual visible text */
+.actual-text {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+/* hover reveal text */
+.hover-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0%;
+
+  color: var(--animation-color);
+  border-right: var(--border-right) solid var(--animation-color);
+  -webkit-text-stroke: 1px var(--animation-color);
+
+  transition: width 0.5s ease;
+  pointer-events: none;
+}
+
+/* hover animation */
+.button:hover .hover-text {
+  width: 100%;
+  filter: drop-shadow(0 0 20px var(--animation-color));
+}
+
+/* disabled */
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

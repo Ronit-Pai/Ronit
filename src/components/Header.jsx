@@ -1,9 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { NAV_ITEMS } from '../constants/data';
 import { THEME } from '../constants/theme';
 
 export function Header() {
   const [activeSection, setActiveSection] = useState('home');
+  const [indicatorStyle, setIndicatorStyle] = useState({});
+  const navRefs = useRef({});
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    updateIndicator();
+  }, [activeSection]);
+
+  useEffect(() => {
+    window.addEventListener('resize', updateIndicator);
+    return () => window.removeEventListener('resize', updateIndicator);
+  }, []);
+
+  const updateIndicator = () => {
+    const activeRef = navRefs.current[activeSection];
+    if (activeRef && containerRef.current) {
+      const { offsetLeft, offsetWidth } = activeRef;
+      setIndicatorStyle({
+        left: `${offsetLeft}px`,
+        width: `${offsetWidth}px`,
+      });
+    }
+  };
+
+  const handleNavClick = (item) => {
+    setActiveSection(item.toLowerCase());
+  };
 
   return (
     <header
@@ -50,37 +77,90 @@ export function Header() {
           />
         </div>
 
-        <nav style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
-          <div style={{ display: 'flex', gap: '2rem' }}>
-            {NAV_ITEMS.map((item) => (
-              <a
-                key={item}
-                href={`#${item.toLowerCase()}`}
-                onClick={() => setActiveSection(item.toLowerCase())}
-                style={{
-                  color:
-                    item.toLowerCase() === activeSection
-                      ? THEME.accent
-                      : THEME.text,
-                  textDecoration: 'none',
-                  fontSize: '0.95rem',
-                  cursor: 'pointer',
-                  transition: 'color 0.3s',
-                }}
-                onMouseEnter={(e) => {
-                  if (item.toLowerCase() !== activeSection) {
-                    e.target.style.color = THEME.blue;
-                  }
-                }}
-                onMouseLeave={(e) => {
-                  if (item.toLowerCase() !== activeSection) {
-                    e.target.style.color = THEME.text;
-                  }
-                }}
-              >
-                {item}
-              </a>
-            ))}
+        <nav style={{ display: 'flex', alignItems: 'center' }}>
+          <style>{`
+            @keyframes slideIn {
+              from {
+                opacity: 0;
+                transform: translateY(-10px);
+              }
+              to {
+                opacity: 1;
+                transform: translateY(0);
+              }
+            }
+          `}</style>
+          
+          <div
+            ref={containerRef}
+            style={{
+              display: 'flex',
+              gap: '0.75rem',
+              padding: '0.75rem',
+              backgroundColor: THEME.surface,
+              borderRadius: '9999px',
+              border: `1px solid ${THEME.border}`,
+              position: 'relative',
+              animation: 'slideIn 0.5s ease-out',
+            }}
+          >
+            {/* Animated background pill indicator */}
+            <div
+              style={{
+                position: 'absolute',
+                height: 'calc(100% - 1.5rem)',
+                backgroundColor: `${THEME.accent}15`,
+                border: `1px solid ${THEME.accent}40`,
+                borderRadius: '9999px',
+                transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                left: indicatorStyle.left,
+                width: indicatorStyle.width,
+                top: '0.75rem',
+              }}
+            />
+
+            {/* Navigation items */}
+            {NAV_ITEMS.map((item) => {
+              const itemKey = item.toLowerCase();
+              const isActive = itemKey === activeSection;
+
+              return (
+                <a
+                  key={item}
+                  ref={(el) => (navRefs.current[itemKey] = el)}
+                  href={`#${itemKey}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNavClick(item);
+                  }}
+                  style={{
+                    color: isActive ? THEME.accent : THEME.text,
+                    textDecoration: 'none',
+                    fontSize: '0.95rem',
+                    cursor: 'pointer',
+                    padding: '0.5rem 1rem',
+                    borderRadius: '9999px',
+                    transition: 'all 0.3s ease',
+                    position: 'relative',
+                    zIndex: 10,
+                    fontWeight: isActive ? '500' : '400',
+                    whiteSpace: 'nowrap',
+                  }}
+                  onMouseEnter={(e) => {
+                    if (!isActive) {
+                      e.target.style.color = THEME.blue;
+                    }
+                  }}
+                  onMouseLeave={(e) => {
+                    if (!isActive) {
+                      e.target.style.color = THEME.text;
+                    }
+                  }}
+                >
+                  {item}
+                </a>
+              );
+            })}
           </div>
         </nav>
       </div>

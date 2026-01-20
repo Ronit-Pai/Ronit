@@ -1,6 +1,8 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import { THEME } from '../constants/theme';
+import { AnimatedButton } from './AnimatedButton';
+import { TiltedCard } from './TiltedCard';
 
 export function Hero() {
   return (
@@ -48,49 +50,41 @@ export function Hero() {
           >
             I get my dopamine by crafting innovative solutions and interesting side projects.
           </p>
-          <button
-            style={{
-              background: THEME.accent,
-              color: '#ffffff',
-              padding: '0.75rem 1.5rem',
-              borderRadius: '2rem',
-              border: 'none',
-              cursor: 'pointer',
-              fontSize: '1rem',
-              fontWeight: '600',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.5rem',
-              transition: 'all 0.3s',
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-2px)';
-              e.currentTarget.style.boxShadow = `0 10px 20px ${THEME.accent}40`;
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = 'none';
-            }}
-          >
-            Know more about me <ArrowRight size={18} />
-          </button>
+          <div style={{ marginTop: '1rem' }}>
+            <AnimatedButton
+              text="Know More"
+              animationColor={THEME.accent}
+              textStrokeColor="rgba(255,255,255,0.6)"
+              fontSize="1.5em"
+              onClick={() => console.log('Clicked!')}
+            />
+          </div>
         </div>
         <div
           style={{
             width: '100%',
             height: '400px',
-            background: `linear-gradient(135deg, ${THEME.surface}, ${THEME.borderLight})`,
-            borderRadius: '1rem',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            fontSize: '5rem',
-            overflow: 'hidden',
-            border: `2px solid ${THEME.border}`,
-            boxShadow: `inset 0 0 30px ${THEME.accent}20`,
           }}
         >
-          📸
+          <TiltedCard scale={1.08}>
+            <div
+              style={{
+                width: '100%',
+                height: '100%',
+                background: `linear-gradient(135deg, ${THEME.surface}, ${THEME.borderLight})`,
+                borderRadius: '1rem',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontSize: '5rem',
+                overflow: 'hidden',
+                border: `2px solid ${THEME.border}`,
+                boxShadow: `inset 0 0 30px ${THEME.accent}20`,
+              }}
+            >
+              📸
+            </div>
+          </TiltedCard>
         </div>
       </div>
     </section>
