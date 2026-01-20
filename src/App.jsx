@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 import { Projects } from './components/Projects';
 import { Freelance } from './components/Freelance';
 import { Footer } from './components/Footer';
+import { About } from './components/About';
 import { GridBackground } from './components/Background';
 import { THEME } from './constants/theme';
 
 export default function Portfolio() {
+  const [currentPage, setCurrentPage] = useState('home');
+
   return (
     <div
       style={{
@@ -24,10 +27,18 @@ export default function Portfolio() {
     >
       <GridBackground />
 
-      <Header />
-      <Hero />
-      <Projects />
-      <Freelance />
+      <Header currentPage={currentPage} setCurrentPage={setCurrentPage} />
+      
+      {currentPage === 'home' && (
+        <>
+          <Hero />
+          <Projects />
+          <Freelance />
+        </>
+      )}
+      
+      {currentPage === 'about' && <About />}
+      
       <Footer />
     </div>
   );

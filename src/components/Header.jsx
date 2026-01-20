@@ -2,11 +2,15 @@ import React, { useState, useRef, useEffect } from 'react';
 import { NAV_ITEMS } from '../constants/data';
 import { THEME } from '../constants/theme';
 
-export function Header() {
-  const [activeSection, setActiveSection] = useState('home');
+export function Header({ currentPage = 'home', setCurrentPage }) {
+  const [activeSection, setActiveSection] = useState(currentPage);
   const [indicatorStyle, setIndicatorStyle] = useState({});
   const navRefs = useRef({});
   const containerRef = useRef(null);
+
+  useEffect(() => {
+    setActiveSection(currentPage);
+  }, [currentPage]);
 
   useEffect(() => {
     updateIndicator();
@@ -29,7 +33,11 @@ export function Header() {
   };
 
   const handleNavClick = (item) => {
-    setActiveSection(item.toLowerCase());
+    const itemKey = item.toLowerCase();
+    setActiveSection(itemKey);
+    if (setCurrentPage) {
+      setCurrentPage(itemKey);
+    }
   };
 
   return (
