@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { NAV_ITEMS } from '../constants/data';
 import { THEME } from '../constants/theme';
+import resumePdf from '../assets/Resume.pdf';
 
 export function Header({ currentPage = 'home', setCurrentPage }) {
   const [activeSection, setActiveSection] = useState(currentPage);
@@ -32,12 +33,31 @@ export function Header({ currentPage = 'home', setCurrentPage }) {
     }
   };
 
-  const handleNavClick = (item) => {
-    const itemKey = item.toLowerCase();
+  const navigateTo = (itemKey) => {
     setActiveSection(itemKey);
-    if (setCurrentPage) {
-      setCurrentPage(itemKey);
+
+    if (!setCurrentPage) return;
+
+    if (itemKey === 'about') {
+      setCurrentPage('about');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
     }
+
+    if (itemKey === 'home') {
+      setCurrentPage('home');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    if (itemKey === 'tools') {
+      setCurrentPage('tools');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    // Fallback: treat as a page key if ever added later
+    setCurrentPage(itemKey);
   };
 
   return (
@@ -131,15 +151,22 @@ export function Header({ currentPage = 'home', setCurrentPage }) {
             {NAV_ITEMS.map((item) => {
               const itemKey = item.toLowerCase();
               const isActive = itemKey === activeSection;
+              const isResume = itemKey === 'resume';
+              const href = isResume ? resumePdf : `#${itemKey}`;
 
               return (
                 <a
                   key={item}
                   ref={(el) => (navRefs.current[itemKey] = el)}
-                  href={`#${itemKey}`}
+                  href={href}
+                  target={isResume ? '_blank' : undefined}
+                  rel={isResume ? 'noopener noreferrer' : undefined}
                   onClick={(e) => {
+                    if (isResume) {
+                      return;
+                    }
                     e.preventDefault();
-                    handleNavClick(item);
+                    navigateTo(itemKey);
                   }}
                   style={{
                     color: isActive ? THEME.accent : THEME.text,

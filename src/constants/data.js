@@ -16,10 +16,10 @@ export const PROJECTS = [
   },
 ];
 
-export const NAV_ITEMS = ['Home', 'About', 'Work', 'Resume'];
+export const NAV_ITEMS = ['Home', 'About', 'Tools', 'Resume'];
 
-export const FOOTER_MAIN = ['Home', 'About', 'Work'];
+export const FOOTER_MAIN = ['Home', 'About', 'Tools'];
 
-export const FOOTER_OTHER = ['Resume', 'Tools', 'Recommendations'];
+export const FOOTER_OTHER = ['Resume', 'Recommendations'];
 
-export const SOCIAL_ICONS = ['Mail', 'Github', 'Twitter', 'Linkedin'];
+export const SOCIAL_ICONS = ['Mail', 'Github', 'Instagram', 'Linkedin'];

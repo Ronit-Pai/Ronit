@@ -1,11 +1,49 @@
 import React from 'react';
-import { Mail, Github, Twitter, Linkedin } from 'lucide-react';
+import { Mail, Github, Instagram, Linkedin } from 'lucide-react';
 import { FOOTER_MAIN, FOOTER_OTHER } from '../constants/data';
 import { THEME } from '../constants/theme';
+import resumePdf from '../assets/Resume.pdf';
 
-const SOCIAL_ICONS = [Mail, Github, Twitter, Linkedin];
+const SOCIAL_LINKS = [
+  { Icon: Mail, href: 'mailto:ronit14pai06@gmail.com', label: 'Email' },
+  { Icon: Github, href: 'https://github.com/Ronit-Pai', label: 'GitHub' },
+  { Icon: Linkedin, href: 'https://www.linkedin.com/in/ronit-pai-85370a356/', label: 'LinkedIn' },
+  { Icon: Instagram, href: 'https://www.instagram.com/ronit.pai', label: 'Instagram' },
+];
 
-export function Footer() {
+export function Footer({ setCurrentPage }) {
+  const handleNavigation = (item) => {
+    const itemKey = item.toLowerCase();
+
+    if (itemKey === 'resume') {
+      return;
+    }
+
+    if (setCurrentPage) {
+      if (itemKey === 'tools') {
+        setCurrentPage('tools');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
+
+      if (itemKey === 'about') {
+        setCurrentPage('about');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
+
+      if (itemKey === 'home') {
+        setCurrentPage('home');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
+
+        // If unknown, default to home without scrolling offsets
+        setCurrentPage('home');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
   return (
     <footer
       style={{
@@ -41,21 +79,33 @@ export function Footer() {
               MAIN LINKS
             </h4>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-              {FOOTER_MAIN.map((item) => (
-                <a
-                  key={item}
-                  href={`#${item.toLowerCase()}`}
-                  style={{
-                    color: THEME.textSecondary,
-                    textDecoration: 'none',
-                    transition: 'color 0.3s',
-                  }}
-                  onMouseEnter={(e) => (e.target.style.color = THEME.accent)}
-                  onMouseLeave={(e) => (e.target.style.color = THEME.textSecondary)}
-                >
-                  {item}
-                </a>
-              ))}
+              {FOOTER_MAIN.map((item) => {
+                const itemKey = item.toLowerCase();
+                const isResume = itemKey === 'resume';
+                const href = isResume ? resumePdf : `#${itemKey}`;
+                return (
+                  <a
+                    key={item}
+                    href={href}
+                    target={isResume ? '_blank' : undefined}
+                    rel={isResume ? 'noopener noreferrer' : undefined}
+                    style={{
+                      color: THEME.textSecondary,
+                      textDecoration: 'none',
+                      transition: 'color 0.3s',
+                    }}
+                    onClick={(e) => {
+                      if (isResume) return;
+                      e.preventDefault();
+                      handleNavigation(item);
+                    }}
+                    onMouseEnter={(e) => (e.target.style.color = THEME.accent)}
+                    onMouseLeave={(e) => (e.target.style.color = THEME.textSecondary)}
+                  >
+                    {item}
+                  </a>
+                );
+              })}
             </div>
           </div>
 
@@ -74,21 +124,36 @@ export function Footer() {
               OTHERS
             </h4>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-              {FOOTER_OTHER.map((item) => (
-                <a
-                  key={item}
-                  href={`#${item.toLowerCase()}`}
-                  style={{
-                    color: THEME.textSecondary,
-                    textDecoration: 'none',
-                    transition: 'color 0.3s',
-                  }}
-                  onMouseEnter={(e) => (e.target.style.color = THEME.accent)}
-                  onMouseLeave={(e) => (e.target.style.color = THEME.textSecondary)}
-                >
-                  {item}
-                </a>
-              ))}
+              {FOOTER_OTHER.map((item) => {
+                const itemKey = item.toLowerCase();
+                const isResume = itemKey === 'resume';
+                const href = isResume ? resumePdf : `#${itemKey}`;
+
+                return (
+                  <a
+                    key={item}
+                    href={href}
+                    target={isResume ? '_blank' : undefined}
+                    rel={isResume ? 'noopener noreferrer' : undefined}
+                    style={{
+                      color: THEME.textSecondary,
+                      textDecoration: 'none',
+                      transition: 'color 0.3s',
+                    }}
+                    onClick={(e) => {
+                      if (isResume) {
+                        return;
+                      }
+                      e.preventDefault();
+                      handleNavigation(item);
+                    }}
+                    onMouseEnter={(e) => (e.target.style.color = THEME.accent)}
+                    onMouseLeave={(e) => (e.target.style.color = THEME.textSecondary)}
+                  >
+                    {item}
+                  </a>
+                );
+              })}
             </div>
           </div>
 
@@ -129,54 +194,6 @@ export function Footer() {
               and let me know what you think.
             </p>
             <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
-              <button
-                style={{
-                  background: 'transparent',
-                  border: `1px solid ${THEME.border}`,
-                  color: THEME.text,
-                  padding: '0.5rem 1rem',
-                  borderRadius: '1.5rem',
-                  cursor: 'pointer',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '0.5rem',
-                  transition: 'all 0.3s',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = THEME.accent;
-                  e.currentTarget.style.color = THEME.accent;
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = THEME.border;
-                  e.currentTarget.style.color = THEME.text;
-                }}
-              >
-                RSS
-              </button>
-              <button
-                style={{
-                  background: 'transparent',
-                  border: `1px solid ${THEME.border}`,
-                  color: THEME.text,
-                  padding: '0.5rem 1rem',
-                  borderRadius: '1.5rem',
-                  cursor: 'pointer',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '0.5rem',
-                  transition: 'all 0.3s',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = THEME.accent;
-                  e.currentTarget.style.color = THEME.accent;
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = THEME.border;
-                  e.currentTarget.style.color = THEME.text;
-                }}
-              >
-                Sitemap
-              </button>
             </div>
           </div>
         </div>
@@ -197,10 +214,13 @@ export function Footer() {
             © 2026 Your Name
           </p>
           <div style={{ display: 'flex', gap: '1rem' }}>
-            {SOCIAL_ICONS.map((Icon, idx) => (
+            {SOCIAL_LINKS.map(({ Icon, href, label }, idx) => (
               <a
                 key={idx}
-                href="#"
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={label}
                 style={{
                   color: THEME.textSecondary,
                   cursor: 'pointer',

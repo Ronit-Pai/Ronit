@@ -7,6 +7,7 @@ import { TechStack } from './TechStack';
 export function About() {
   return (
     <section
+      id="about"
       style={{
         padding: '4rem 1.5rem',
         maxWidth: '100%',

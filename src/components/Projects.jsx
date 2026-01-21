@@ -6,6 +6,7 @@ import { THEME } from '../constants/theme';
 export function Projects() {
   return (
     <section
+      id="work"
       style={{
         padding: '4rem 1.5rem',
         maxWidth: '100%',

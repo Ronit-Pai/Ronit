@@ -7,6 +7,7 @@ import { TiltedCard } from './TiltedCard';
 export function Hero() {
   return (
     <section
+      id="home"
       style={{
         padding: '4rem 1.5rem',
         maxWidth: '100%',
@@ -25,8 +26,31 @@ export function Hero() {
         }}
       >
         <div>
+          <style>{`
+            @keyframes waveHand {
+              0% { transform: rotate(0deg); }
+              10% { transform: rotate(14deg); }
+              20% { transform: rotate(-8deg); }
+              30% { transform: rotate(14deg); }
+              40% { transform: rotate(-4deg); }
+              50% { transform: rotate(10deg); }
+              60% { transform: rotate(0deg); }
+              100% { transform: rotate(0deg); }
+            }
+          `}</style>
           <h1 style={{ fontSize: '3.5rem', fontWeight: 'bold', marginBottom: '1rem' }}>
-            Hey there <span style={{ fontSize: '2.5rem' }}>👋</span>
+            Hey there{' '}
+            <span
+              style={{
+                fontSize: '2.5rem',
+                display: 'inline-block',
+                transformOrigin: '70% 70%',
+                animation: 'waveHand 1.8s ease-in-out infinite',
+              }}
+              aria-label="waving hand"
+            >
+              👋
+            </span>
           </h1>
           <h2 style={{ fontSize: '2.5rem', marginBottom: '1.5rem' }}>
             I'm <span style={{ color: THEME.accent }}>Your Name</span>

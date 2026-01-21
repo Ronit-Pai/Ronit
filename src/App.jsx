@@ -6,6 +6,7 @@ import { Freelance } from './components/Freelance';
 import { Footer } from './components/Footer';
 import { About } from './components/About';
 import { GridBackground } from './components/Background';
+import { Toolbox } from './components/Toolbox';
 import { THEME } from './constants/theme';
 
 export default function Portfolio() {
@@ -43,20 +44,9 @@ export default function Portfolio() {
       )}
       
       {currentPage === 'about' && <About />}
-      
-      {currentPage === 'work' && (
-        <div style={{ padding: '4rem 1.5rem', textAlign: 'center' }}>
-          <h1>Work Coming Soon</h1>
-        </div>
-      )}
-      
-      {currentPage === 'resume' && (
-        <div style={{ padding: '4rem 1.5rem', textAlign: 'center' }}>
-          <h1>Resume Coming Soon</h1>
-        </div>
-      )}
-      
-      <Footer />
+      {currentPage === 'tools' && <Toolbox />}
+
+      <Footer setCurrentPage={setCurrentPage} />
     </div>
   );
 }

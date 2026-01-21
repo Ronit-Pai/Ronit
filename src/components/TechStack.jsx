@@ -25,7 +25,7 @@ export function TechStack() {
   ];
 
   return (
-    <div style={{ marginBottom: "6rem" }}>
+    <section id="tools" style={{ marginBottom: "6rem" }}>
       <h2
         style={{
           fontSize: "2rem",
@@ -113,6 +113,6 @@ export function TechStack() {
           ))}
         </div>
       </GlassCard>
-    </div>
+    </section>
   );
 }
