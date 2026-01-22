@@ -56,6 +56,12 @@ export function Header({ currentPage = 'home', setCurrentPage }) {
       return;
     }
 
+    if (itemKey === 'work') {
+      setCurrentPage('work');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
     // Fallback: treat as a page key if ever added later
     setCurrentPage(itemKey);
   };

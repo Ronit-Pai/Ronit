@@ -26,6 +26,12 @@ export function Footer({ setCurrentPage }) {
         return;
       }
 
+      if (itemKey === 'work') {
+        setCurrentPage('work');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
+
       if (itemKey === 'about') {
         setCurrentPage('about');
         window.scrollTo({ top: 0, behavior: 'smooth' });

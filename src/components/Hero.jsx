@@ -4,7 +4,14 @@ import { THEME } from '../constants/theme';
 import { AnimatedButton } from './AnimatedButton';
 import { TiltedCard } from './TiltedCard';
 
-export function Hero() {
+export function Hero({ setCurrentPage }) {
+  const handleKnowMoreClick = () => {
+    if (setCurrentPage) {
+      setCurrentPage('about');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
   return (
     <section
       id="home"
@@ -17,98 +24,75 @@ export function Hero() {
     >
       <div
         style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
-          gap: '3rem',
-          alignItems: 'center',
           maxWidth: '1400px',
           margin: '0 auto',
+          textAlign: 'center',
         }}
       >
-        <div>
-          <style>{`
-            @keyframes waveHand {
-              0% { transform: rotate(0deg); }
-              10% { transform: rotate(14deg); }
-              20% { transform: rotate(-8deg); }
-              30% { transform: rotate(14deg); }
-              40% { transform: rotate(-4deg); }
-              50% { transform: rotate(10deg); }
-              60% { transform: rotate(0deg); }
-              100% { transform: rotate(0deg); }
-            }
-          `}</style>
-          <h1 style={{ fontSize: '3.5rem', fontWeight: 'bold', marginBottom: '1rem' }}>
-            Hey there{' '}
-            <span
-              style={{
-                fontSize: '2.5rem',
-                display: 'inline-block',
-                transformOrigin: '70% 70%',
-                animation: 'waveHand 1.8s ease-in-out infinite',
-              }}
-              aria-label="waving hand"
-            >
-              👋
-            </span>
-          </h1>
-          <h2 style={{ fontSize: '2.5rem', marginBottom: '1.5rem' }}>
-            I'm <span style={{ color: THEME.accent }}>Your Name</span>
-          </h2>
-          <p
+        <style>{`
+          @keyframes waveHand {
+            0% { transform: rotate(0deg); }
+            10% { transform: rotate(14deg); }
+            20% { transform: rotate(-8deg); }
+            30% { transform: rotate(14deg); }
+            40% { transform: rotate(-4deg); }
+            50% { transform: rotate(10deg); }
+            60% { transform: rotate(0deg); }
+            100% { transform: rotate(0deg); }
+          }
+        `}</style>
+        <h1 style={{ 
+          fontSize: '4.5rem', 
+          fontWeight: 'bold', 
+          marginBottom: '1rem', 
+          fontFamily: "'Montserrat', sans-serif",
+          textShadow: `0 0 20px ${THEME.accent}15, 0 0 40px ${THEME.accent}10, 0 0 60px ${THEME.accent}05`,
+        }}>
+          Hey there{' '}
+          <span
             style={{
-              fontSize: '1.1rem',
-              color: THEME.textSecondary,
-              marginBottom: '0.5rem',
+              fontSize: '3rem',
+              display: 'inline-block',
+              transformOrigin: '70% 70%',
+              animation: 'waveHand 1.8s ease-in-out infinite',
             }}
+            aria-label="waving hand"
           >
-            A 23 year old <span style={{ color: THEME.blue }}>Full Stack Developer</span> from India.
-          </p>
-          <p
-            style={{
-              fontSize: '1rem',
-              color: THEME.textSecondary,
-              marginBottom: '2rem',
-              lineHeight: '1.6',
-            }}
-          >
-            I get my dopamine by crafting innovative solutions and interesting side projects.
-          </p>
-          <div style={{ marginTop: '1rem' }}>
-            <AnimatedButton
-              text="Know More"
-              animationColor={THEME.accent}
-              textStrokeColor="rgba(255,255,255,0.6)"
-              fontSize="1.5em"
-              onClick={() => console.log('Clicked!')}
-            />
-          </div>
-        </div>
-        <div
+            👋
+          </span>
+        </h1>
+        <h2 style={{ fontSize: '3rem', marginBottom: '1.5rem', fontFamily: "'Montserrat', sans-serif" }}>
+          I'm <span style={{ color: THEME.accent }}>Your Name</span>
+        </h2>
+        <p
           style={{
-            width: '100%',
-            height: '400px',
+            fontSize: '1.3rem',
+            color: THEME.textSecondary,
+            marginBottom: '0.5rem',
+            fontFamily: "'Exo 2', sans-serif",
           }}
         >
-          <TiltedCard scale={1.08}>
-            <div
-              style={{
-                width: '100%',
-                height: '100%',
-                background: `linear-gradient(135deg, ${THEME.surface}, ${THEME.borderLight})`,
-                borderRadius: '1rem',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontSize: '5rem',
-                overflow: 'hidden',
-                border: `2px solid ${THEME.border}`,
-                boxShadow: `inset 0 0 30px ${THEME.accent}20`,
-              }}
-            >
-              📸
-            </div>
-          </TiltedCard>
+          A 23 year old <span style={{ color: THEME.blue }}>Full Stack Developer</span> from India.
+        </p>
+        <p
+          style={{
+            fontSize: '1.15rem',
+            color: THEME.textSecondary,
+            marginBottom: '2rem',
+            lineHeight: '1.6',
+            fontFamily: "'Exo 2', sans-serif",
+          }}
+        >
+          I get my dopamine by crafting innovative solutions and interesting side projects.
+        </p>
+        <div style={{ marginTop: '1rem', display: 'flex', justifyContent: 'center' }}>
+          <AnimatedButton
+            text="Know More"
+            animationColor={THEME.accent}
+            textStrokeColor="rgba(255,255,255,0.6)"
+            fontSize="1.5em"
+            onClick={handleKnowMoreClick}
+          />
         </div>
       </div>
     </section>

@@ -8,6 +8,7 @@ import { About } from './components/About';
 import { GridBackground } from './components/Background';
 import { Toolbox } from './components/Toolbox';
 import { THEME } from './constants/theme';
+import { Work } from './components/Work';
 
 export default function Portfolio() {
   const [currentPage, setCurrentPage] = useState('home');
@@ -23,7 +24,7 @@ export default function Portfolio() {
         backgroundColor: THEME.bg,
         color: THEME.text,
         minHeight: '100vh',
-        fontFamily: 'system-ui, -apple-system, sans-serif',
+        fontFamily: "'Exo 2', system-ui, -apple-system, sans-serif",
         position: 'relative',
         overflow: 'hidden',
         width: '100%',
@@ -37,13 +38,14 @@ export default function Portfolio() {
       
       {currentPage === 'home' && (
         <>
-          <Hero />
+          <Hero setCurrentPage={setCurrentPage} />
           <Projects />
           <Freelance />
         </>
       )}
       
       {currentPage === 'about' && <About />}
+      {currentPage === 'work' && <Work />}
       {currentPage === 'tools' && <Toolbox />}
 
       <Footer setCurrentPage={setCurrentPage} />
