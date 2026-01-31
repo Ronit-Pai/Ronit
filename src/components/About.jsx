@@ -3,6 +3,7 @@ import { THEME } from '../constants/theme';
 import { GlassCard } from './GlassCard';
 import { TiltedCard } from './TiltedCard';
 import { TechStack } from './TechStack';
+import profileImg from '../assets/art/profile.jpg';
 
 export function About() {
   return (
@@ -27,23 +28,19 @@ export function About() {
         >
           <div style={{ height: '400px' }}>
             <TiltedCard scale={1.08}>
-              <div
+              <img
+                src={profileImg}
+                alt="Profile"
                 style={{
                   width: '100%',
                   height: '100%',
-                  background: `linear-gradient(135deg, ${THEME.surface}, ${THEME.borderLight})`,
+                  objectFit: 'cover',
                   borderRadius: '1rem',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: '5rem',
-                  overflow: 'hidden',
                   border: `2px solid ${THEME.border}`,
                   boxShadow: `inset 0 0 30px ${THEME.accent}20`,
+                  opacity: 1,
                 }}
-              >
-                👨‍💻
-              </div>
+              />
             </TiltedCard>
           </div>
 

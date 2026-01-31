@@ -44,7 +44,7 @@ export function Freelance() {
               zIndex: 1,
             }}
           >
-            I occasionally take up <span style={{ color: THEME.accent }}>freelance</span> work
+            Want to <span style={{ color: THEME.accent }}>collaborate</span>?!
           </h2>
           <p
             style={{
@@ -55,9 +55,10 @@ export function Freelance() {
               zIndex: 1,
             }}
           >
-            Have a project that needs a professional touch? Let's collaborate!
+            Have a project that needs a professional touch? Let's work together!
           </p>
-          <button
+          <a
+            href="mailto:ronit14pai06@gmail.com"
             style={{
               background: THEME.accent,
               color: '#ffffff',
@@ -73,6 +74,7 @@ export function Freelance() {
               transition: 'all 0.3s',
               position: 'relative',
               zIndex: 1,
+              textDecoration: 'none',
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.transform = 'translateY(-2px)';
@@ -84,7 +86,7 @@ export function Freelance() {
             }}
           >
             <Mail size={18} /> Hit me up!
-          </button>
+          </a>
         </div>
       </div>
     </section>

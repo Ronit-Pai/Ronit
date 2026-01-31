@@ -163,88 +163,49 @@ export function Footer({ setCurrentPage }) {
             </div>
           </div>
 
-          {/* Guestbook */}
+          </div>
+
+          {/* Social Links & Copyright */}
           <div
             style={{
-              background: THEME.surface,
-              border: `1px solid ${THEME.border}`,
-              borderRadius: '1rem',
-              padding: '1.5rem',
-              textAlign: 'center',
-              transition: 'all 0.3s',
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.borderColor = THEME.accent;
-              e.currentTarget.style.boxShadow = `0 5px 15px ${THEME.accent}20`;
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.borderColor = THEME.border;
-              e.currentTarget.style.boxShadow = 'none';
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              borderTop: `1px solid ${THEME.border}`,
+              paddingTop: '2rem',
+              flexWrap: 'wrap',
+              gap: '1rem',
             }}
           >
-            <h3 style={{ fontSize: '1.1rem', fontWeight: 'bold', marginBottom: '0.75rem' }}>
-              Hi! Thanks for visiting my site.
-            </h3>
-            <p style={{ color: THEME.textSecondary, fontSize: '0.95rem', marginBottom: '1rem' }}>
-              Sign my{' '}
-              <a
-                href="#"
-                style={{
-                  color: THEME.blue,
-                  textDecoration: 'none',
-                  fontWeight: '600',
-                }}
-              >
-                Guestbook
-              </a>{' '}
-              and let me know what you think.
+            <p style={{ color: THEME.textSecondary, fontSize: '0.9rem' }}>
+              © 2026 Your Name
             </p>
-            <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
+            <div style={{ display: 'flex', gap: '1rem' }}>
+              {SOCIAL_LINKS.map(({ Icon, href, label }, idx) => (
+                <a
+                  key={idx}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  style={{
+                    color: THEME.textSecondary,
+                    cursor: 'pointer',
+                    transition: 'color 0.3s',
+                    display: 'flex',
+                    alignItems: 'center',
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = THEME.accent)}
+                  onMouseLeave={(e) =>
+                    (e.currentTarget.style.color = THEME.textSecondary)
+                  }
+                >
+                  <Icon size={20} />
+                </a>
+              ))}
             </div>
           </div>
         </div>
-
-        {/* Social Links & Copyright */}
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            borderTop: `1px solid ${THEME.border}`,
-            paddingTop: '2rem',
-            flexWrap: 'wrap',
-            gap: '1rem',
-          }}
-        >
-          <p style={{ color: THEME.textSecondary, fontSize: '0.9rem' }}>
-            © 2026 Your Name
-          </p>
-          <div style={{ display: 'flex', gap: '1rem' }}>
-            {SOCIAL_LINKS.map(({ Icon, href, label }, idx) => (
-              <a
-                key={idx}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={label}
-                style={{
-                  color: THEME.textSecondary,
-                  cursor: 'pointer',
-                  transition: 'color 0.3s',
-                  display: 'flex',
-                  alignItems: 'center',
-                }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = THEME.accent)}
-                onMouseLeave={(e) =>
-                  (e.currentTarget.style.color = THEME.textSecondary)
-                }
-              >
-                <Icon size={20} />
-              </a>
-            ))}
-          </div>
-        </div>
-      </div>
-    </footer>
+      </footer>
   );
 }

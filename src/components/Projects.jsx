@@ -3,7 +3,7 @@ import { ExternalLink } from 'lucide-react';
 import { PROJECTS } from '../constants/data';
 import { THEME } from '../constants/theme';
 
-export function Projects() {
+export function Projects({ setCurrentPage }) {
   return (
     <section
       id="work"
@@ -119,6 +119,7 @@ export function Projects() {
               fontWeight: '600',
               transition: 'all 0.3s',
             }}
+            onClick={() => setCurrentPage('work')}
             onMouseEnter={(e) => {
               e.currentTarget.style.transform = 'translateY(-2px)';
               e.currentTarget.style.boxShadow = `0 10px 20px ${THEME.accent}40`;
@@ -128,7 +129,7 @@ export function Projects() {
               e.currentTarget.style.boxShadow = 'none';
             }}
           >
-            Checkout more projects →
+            Check out more projects →
           </button>
         </div>
       </div>
