@@ -2,6 +2,7 @@ import React from "react";
 import { THEME } from "../constants/theme";
 import { ExternalLink, Github } from "lucide-react";
 import projectScreenshot from "../assets/screenshots/project1.png";
+import { PROJECTS } from "../constants/data";
 
 export function ProjectRow({ reverse = false, project }) {
   const projectData = project || {
@@ -34,6 +35,7 @@ export function ProjectRow({ reverse = false, project }) {
       >
         {projectData.title}
       </h3>
+
       <p
         style={{
           color: THEME.textSecondary,
@@ -44,6 +46,7 @@ export function ProjectRow({ reverse = false, project }) {
       >
         {projectData.description}
       </p>
+
       <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap" }}>
         {projectData.tech.map((tech) => (
           <span
@@ -62,6 +65,7 @@ export function ProjectRow({ reverse = false, project }) {
           </span>
         ))}
       </div>
+
       <div style={{ display: "flex", gap: "1rem", marginTop: "0.5rem" }}>
         {projectData.github && (
           <a
@@ -93,7 +97,8 @@ export function ProjectRow({ reverse = false, project }) {
             <Github size={18} /> GitHub
           </a>
         )}
-        {projectData.demo && (
+
+        {projectData.demo && projectData.demo !== "" && (
           <a
             href={projectData.demo}
             target="_blank"

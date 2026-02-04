@@ -178,7 +178,7 @@ export function Footer({ setCurrentPage }) {
             }}
           >
             <p style={{ color: THEME.textSecondary, fontSize: '0.9rem' }}>
-              © 2026 Your Name
+              © 2026 Ronit Pai.
             </p>
             <div style={{ display: 'flex', gap: '1rem' }}>
               {SOCIAL_LINKS.map(({ Icon, href, label }, idx) => (

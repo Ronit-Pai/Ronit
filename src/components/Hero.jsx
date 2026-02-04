@@ -70,7 +70,7 @@ export function Hero({ setCurrentPage }) {
             fontFamily: "'Montserrat', sans-serif",
           }}
         >
-          I'm <span style={{ color: THEME.accent }}>Your Name</span>
+          I'm <span style={{ color: THEME.accent }}>Ronit Pai</span>
         </h2>
         <p
           style={{
@@ -80,8 +80,8 @@ export function Hero({ setCurrentPage }) {
             fontFamily: "'Exo 2', sans-serif",
           }}
         >
-          A 23 year old{" "}
-          <span style={{ color: THEME.blue }}>Full Stack Developer</span> from
+          A 19 year old{" "}
+          <span style={{ color: THEME.blue }}>Frontend Developer</span> from
           India.
         </p>
         <p
@@ -93,8 +93,7 @@ export function Hero({ setCurrentPage }) {
             fontFamily: "'Exo 2', sans-serif",
           }}
         >
-          I get my dopamine by crafting innovative solutions and interesting
-          side projects.
+          I am also an AI/ML enthusiast with a passion for learning and creating.
         </p>
         <div
           style={{

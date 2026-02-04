@@ -55,8 +55,38 @@ export function Projects({ setCurrentPage }) {
                 e.currentTarget.style.boxShadow = 'none';
               }}
             >
-              <div style={{ fontSize: '4rem', marginBottom: '1rem' }}>
-                {project.image}
+              <div style={{ width: '100%', height: '200px', marginBottom: '1rem', overflow: 'hidden', borderRadius: '0.5rem' }}>
+                {typeof project.image === 'string' && project.image.length <= 2 ? (
+                  // Handle emoji images
+                  <div
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontSize: '4rem',
+                      background: THEME.surface,
+                    }}
+                  >
+                    {project.image}
+                  </div>
+                ) : (
+                  // Handle actual image files
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      display: 'block',
+                    }}
+                    onError={(e) => {
+                      e.target.style.display = 'none';
+                    }}
+                  />
+                )}
               </div>
               <h3
                 style={{
@@ -71,38 +101,102 @@ export function Projects({ setCurrentPage }) {
               <p
                 style={{
                   color: THEME.textSecondary,
-                  marginBottom: '1.5rem',
+                  marginBottom: '1rem',
                   lineHeight: '1.6',
                 }}
               >
                 {project.description}
               </p>
-              <button
-                style={{
-                  background: 'transparent',
-                  border: `1.5px solid ${THEME.accent}`,
-                  color: THEME.accent,
-                  padding: '0.5rem 1rem',
-                  borderRadius: '1.5rem',
-                  cursor: 'pointer',
-                  fontSize: '0.9rem',
-                  fontWeight: '600',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '0.5rem',
-                  transition: 'all 0.3s',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.background = `${THEME.accent}15`;
-                  e.currentTarget.style.transform = 'translateX(4px)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.background = 'transparent';
-                  e.currentTarget.style.transform = 'translateX(0)';
-                }}
-              >
-                <ExternalLink size={16} /> Check it out
-              </button>
+              {project.tech && (
+                <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', marginBottom: '1rem' }}>
+                  {project.tech.map((tech) => (
+                    <span
+                      key={tech}
+                      style={{
+                        padding: '0.25rem 0.75rem',
+                        borderRadius: '9999px',
+                        background: `${THEME.accent}15`,
+                        border: `1px solid ${THEME.accent}40`,
+                        color: THEME.accent,
+                        fontSize: '0.75rem',
+                        fontWeight: '500',
+                      }}
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              )}
+              <div style={{ display: 'flex', gap: '0.75rem' }}>
+                {project.github && (
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={
+                      {
+                        background: 'transparent',
+                        border: `1.5px solid ${THEME.accent}`,
+                        color: THEME.accent,
+                        padding: '0.5rem 1rem',
+                        borderRadius: '1.5rem',
+                        cursor: 'pointer',
+                        fontSize: '0.9rem',
+                        fontWeight: '600',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '0.5rem',
+                        transition: 'all 0.3s',
+                        textDecoration: 'none',
+                      }
+                    }
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.background = `${THEME.accent}15`;
+                      e.currentTarget.style.transform = 'translateX(4px)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.background = 'transparent';
+                      e.currentTarget.style.transform = 'translateX(0)';
+                    }}
+                  >
+                    <ExternalLink size={16} /> GitHub
+                  </a>
+                )}
+                {project.demo && (
+                  <a
+                    href={project.demo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={
+                      {
+                        background: 'transparent',
+                        border: `1.5px solid ${THEME.accent}`,
+                        color: THEME.accent,
+                        padding: '0.5rem 1rem',
+                        borderRadius: '1.5rem',
+                        cursor: 'pointer',
+                        fontSize: '0.9rem',
+                        fontWeight: '600',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '0.5rem',
+                        transition: 'all 0.3s',
+                        textDecoration: 'none',
+                      }
+                    }
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.background = `${THEME.accent}15`;
+                      e.currentTarget.style.transform = 'translateX(4px)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.background = 'transparent';
+                      e.currentTarget.style.transform = 'translateX(0)';
+                    }}
+                  >
+                    <ExternalLink size={16} /> Live Demo
+                  </a>
+                )}
+              </div>
             </div>
           ))}
         </div>

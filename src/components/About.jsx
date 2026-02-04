@@ -46,17 +46,23 @@ export function About() {
 
           <div>
             <h1 style={{ fontSize: '3rem', fontWeight: 'bold', marginBottom: '0.5rem' }}>
-              I'm <span style={{ color: THEME.accent }}>Your Name</span>
+              I'm <span style={{ color: THEME.accent }}>Ronit Pai</span>
             </h1>
             <p
               style={{
                 fontSize: '1.3rem',
                 color: THEME.blue,
-                marginBottom: '1.5rem',
+                marginBottom: '0.5rem',
                 fontWeight: '600',
               }}
             >
-              I do everything Digital
+              <img 
+                src="https://readme-typing-svg.herokuapp.com?font=Montserrat&size=22&duration=3000&pause=1000&color=D4AF37&center=false&vCenter=true&width=400&lines=I+Code;I+Draw;I+Design;I+Game" 
+                alt="Typing SVG"
+                style={{
+                  filter: `drop-shadow(0 0 8px ${THEME.accent}80)`,
+                }}
+              />
             </p>
             <p
               style={{
@@ -66,10 +72,8 @@ export function About() {
                 marginBottom: '0',
               }}
             >
-              I'm a passionate Full Stack Developer with a keen interest in creating innovative
-              digital solutions. I combine technical expertise with creative thinking to build
-              products that make a real impact. When I'm not coding, you'll find me exploring new
-              technologies and working on exciting side projects.
+              I'm a passionate Frontend Developer with a keen interest in AI/ML. I combine technical expertise with creative thinking to build
+              products that make a real impact. Apart from coding I enjoy drawing , watching movies/webseries and mainly gaming!!
             </p>
           </div>
         </div>
@@ -103,7 +107,7 @@ export function About() {
                   marginBottom: '0.5rem',
                 }}
               >
-                B.E. Computer Science
+                B.Tech. Computer Science
               </h3>
               <p
                 style={{
@@ -146,7 +150,7 @@ export function About() {
                   fontWeight: '600',
                 }}
               >
-                Science Stream
+                Karkala Jnanasudha P.U. College
               </p>
               <p
                 style={{
@@ -155,8 +159,8 @@ export function About() {
                   lineHeight: '1.6',
                 }}
               >
-                Strong foundation in physics, chemistry, and mathematics that fueled my passion
-                for technology.
+                Strong foundation in physics, chemistry, mathematics and Statistics that fueled my passion
+                for technology and Data Science.
               </p>
             </GlassCard>
 
@@ -179,7 +183,7 @@ export function About() {
                   fontWeight: '600',
                 }}
               >
-                CBSE Board
+                Dr. N.S.A.M English Medium High School
               </p>
               <p
                 style={{
@@ -213,50 +217,23 @@ export function About() {
           </h2>
           <div
             style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-              gap: '2rem',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              minHeight: '200px',
             }}
           >
-            {['🏆 National Hackathon Winner', '🚀 First Production App', '📚 1K+ GitHub Stars', '💼 Freelance Success'].map(
-              (milestone) => (
-                <GlassCard key={milestone} glow={true}>
-                  <div
-                    style={{
-                      aspectRatio: '16/9',
-                      background: `linear-gradient(135deg, ${THEME.accent}20, ${THEME.blue}20)`,
-                      borderRadius: '0.75rem',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      fontSize: '3rem',
-                      marginBottom: '1rem',
-                      transition: 'all 0.3s ease',
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.transform = 'scale(1.05)';
-                      e.currentTarget.parentElement.style.boxShadow = `0 0 30px ${THEME.accent}`;
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.transform = 'scale(1)';
-                      e.currentTarget.parentElement.style.boxShadow = 'none';
-                    }}
-                  >
-                    {milestone.split(' ')[0]}
-                  </div>
-                  <p
-                    style={{
-                      fontSize: '1rem',
-                      fontWeight: '600',
-                      color: THEME.accent,
-                      textAlign: 'center',
-                    }}
-                  >
-                    {milestone.split(' ').slice(1).join(' ')}
-                  </p>
-                </GlassCard>
-              )
-            )}
+            <h3
+              style={{
+                fontSize: '3rem',
+                fontWeight: 'bold',
+                color: THEME.accent,
+                textAlign: 'center',
+                fontFamily: "'Montserrat', sans-serif",
+              }}
+            >
+              Coming Soon . . . !?
+            </h3>
           </div>
         </div>
       </div>

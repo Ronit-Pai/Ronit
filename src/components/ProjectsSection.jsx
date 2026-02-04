@@ -1,12 +1,17 @@
 import { ProjectRow } from './ProjectRow';
+import { PROJECTS } from '../constants/data';
 import { THEME } from '../constants/theme';
 
 export function ProjectsSection() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '6rem' }}>
-      <ProjectRow reverse={false} />
-      <ProjectRow reverse={true} />
-      <ProjectRow reverse={false} />
+      {PROJECTS.map((project, index) => (
+        <ProjectRow 
+          key={index} 
+          project={project} 
+          reverse={index % 2 === 1} 
+        />
+      ))}
       
       {/* Checkout more projects button */}
       <div style={{ textAlign: 'center', marginTop: '2rem' }}>
