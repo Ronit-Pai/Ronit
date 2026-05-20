@@ -1,0 +1,28 @@
+/* Glassmorphism Card */
+.glass-card {
+  background: rgba(26, 26, 26, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(212, 175, 55, 0.1);
+  border-radius: 1rem;
+  padding: 2rem;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-sizing: border-box;
+  outline: none;
+}
+
+.glass-card:hover {
+  background: rgba(26, 26, 26, 0.7);
+  border-color: rgba(212, 175, 55, 0.3);
+}
+
+.glass-card.with-glow:hover {
+  box-shadow: 0 0 30px var(--glow-color, #d4af37);
+  border-color: var(--glow-color, #d4af37);
+}
+
+@media (max-width: 768px) {
+  .glass-card {
+    padding: 1.5rem;
+  }
+}
