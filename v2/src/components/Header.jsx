@@ -17,6 +17,8 @@ export function Header() {
   const navRefs = useRef({});
   const containerRef = useRef(null);
 
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   const updateIndicator = useCallback(() => {
     const activeRef = navRefs.current[activeSection];
     if (activeRef && containerRef.current) {
@@ -42,6 +44,10 @@ export function Header() {
     return () => window.removeEventListener("resize", updateIndicator);
   }, [updateIndicator]);
 
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [pathname]);
+
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border backdrop-blur-[10px] bg-[#0a0a0acc]">
       <div
@@ -58,37 +64,74 @@ export function Header() {
           </Link>
         </div>
 
-        <nav className="flex items-center">
-          <div ref={containerRef} className="nav-pill-container">
-            <div className="nav-pill-indicator" style={indicatorStyle} />
+        <nav className="flex items-center gap-4">
+          <div className="hidden md:block" ref={containerRef}>
+            <div className="nav-pill-container">
+              <div className="nav-pill-indicator" style={indicatorStyle} />
 
-            {NAV_ITEMS.map((item) => {
-              const itemKey = item.toLowerCase();
-              const isResume = itemKey === "resume";
-              const href = isResume
-                ? "/Resume.pdf"
-                : itemKey === "home"
-                  ? "/"
-                  : `/${itemKey}`;
-              const isActive = !isResume && itemKey === activeSection;
+              {NAV_ITEMS.map((item) => {
+                const itemKey = item.toLowerCase();
+                const isResume = itemKey === "resume";
+                const href = isResume
+                  ? "/Resume.pdf"
+                  : itemKey === "home"
+                    ? "/"
+                    : `/${itemKey}`;
+                const isActive = !isResume && itemKey === activeSection;
 
-              return (
-                <Link
-                  key={item}
-                  href={href}
-                  ref={(el) => {
-                    if (!isResume) navRefs.current[itemKey] = el;
-                  }}
-                  target={isResume ? "_blank" : undefined}
-                  rel={isResume ? "noopener noreferrer" : undefined}
-                  className={`nav-pill-link ${isActive ? "active" : ""}`}
-                >
-                  {item}
-                </Link>
-              );
-            })}
+                return (
+                  <Link
+                    key={item}
+                    href={href}
+                    ref={(el) => {
+                      if (!isResume) navRefs.current[itemKey] = el;
+                    }}
+                    target={isResume ? "_blank" : undefined}
+                    rel={isResume ? "noopener noreferrer" : undefined}
+                    className={`nav-pill-link ${isActive ? "active" : ""}`}
+                  >
+                    {item}
+                  </Link>
+                );
+              })}
+            </div>
           </div>
+
+          <button
+            type="button"
+            className="mobile-nav-toggle md:hidden"
+            aria-expanded={isMenuOpen}
+            aria-label={isMenuOpen ? "Close navigation" : "Open navigation"}
+            onClick={() => setIsMenuOpen((open) => !open)}
+          >
+            <span className={`mobile-nav-icon ${isMenuOpen ? "open" : ""}`} />
+          </button>
         </nav>
+      </div>
+
+      <div className={`mobile-nav-menu ${isMenuOpen ? "open" : ""}`}>
+        {NAV_ITEMS.map((item) => {
+          const itemKey = item.toLowerCase();
+          const isResume = itemKey === "resume";
+          const href = isResume
+            ? "/Resume.pdf"
+            : itemKey === "home"
+              ? "/"
+              : `/${itemKey}`;
+          const isActive = !isResume && itemKey === activeSection;
+
+          return (
+            <Link
+              key={item}
+              href={href}
+              target={isResume ? "_blank" : undefined}
+              rel={isResume ? "noopener noreferrer" : undefined}
+              className={`mobile-nav-link ${isActive ? "active" : ""}`}
+            >
+              {item}
+            </Link>
+          );
+        })}
       </div>
     </header>
   );

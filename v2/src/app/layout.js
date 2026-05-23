@@ -20,6 +20,16 @@ const exo2 = Exo_2({
 export const metadata = {
   title: "Ronit Pai | Portfolio",
   description: "Personal portfolio of Ronit Pai - Frontend Developer and AI/ML Enthusiast from India.",
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+    other: [
+      { rel: "icon", url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { rel: "icon", url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" }
+    ]
+  },
+  manifest: "/site.webmanifest",
 };
 
 export default function RootLayout({ children }) {
