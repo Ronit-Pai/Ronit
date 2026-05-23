@@ -1,6 +1,6 @@
 # Portfolio
 
-Monorepo-style layout for Ronit Pai's portfolio projects.
+Monorepo-style layout for My portfolio projects.
 
 | Folder | Stack | Description |
 |--------|--------|-------------|
@@ -26,7 +26,3 @@ cd v1
 npm install
 npm run dev
 ```
-
-## Adding to a new repository
-
-This repo root can stay as-is. To publish only the new project, use the `v2/` folder as the app root (copy or set it as the deploy root in Vercel/Netlify).
