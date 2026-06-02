@@ -4,7 +4,7 @@ import { THEME } from "@/constants/theme";
 import { GlassCard } from "./GlassCard";
 import { TiltedCard } from "./TiltedCard";
 import { TechStack } from "./TechStack";
-import profileImg from "@/assets/art/profile.jpg";
+import profileImg from "@/assets/art/profile.png";
 
 export function About() {
   return (
