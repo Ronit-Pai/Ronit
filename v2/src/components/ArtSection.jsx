@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { THEME } from "@/constants/theme";
 import art1 from "@/assets/art/art1.png";
+import art2 from "@/assets/art/art2.png";
 import pic1 from "@/assets/art/pic1.jpg";
 import pic2 from "@/assets/art/pic2.jpg";
 import pic3 from "@/assets/art/pic3.jpg";
@@ -10,7 +11,7 @@ import pic4 from "@/assets/art/pic4.jpg";
 import pic5 from "@/assets/art/pic5.jpg";
 
 export function ArtSection() {
-  const artImages = [art1, pic1, pic2, pic3, pic4, pic5, null];
+  const artImages = [art1, art2, pic1, pic2, pic3, pic4, pic5, null];
   const [modalImage, setModalImage] = useState(null);
 
   const openModal = (imageSrc) => {
